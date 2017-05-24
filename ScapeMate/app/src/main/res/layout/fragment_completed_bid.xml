@@ -1,0 +1,329 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.scapemate.fullsail.backaryan.scapemate.fragments.CompletedBidFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/estimate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/estimate"
+                android:textColor="@color/colorButton"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/bidLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/estimate"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorActionBar">
+
+                <TextView
+                    android:id="@+id/crewWageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/crew_wage"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/crewWage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/overtimeFactorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/crewWageText"
+                    android:layout_below="@id/crewWageText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/overtime_factor"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/overtimeFactor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/overtimeFactorText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/riskFactorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/overtimeFactorText"
+                    android:layout_below="@id/overtimeFactorText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/risk_factor"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/riskFactor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/riskFactorText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/laborBurdenText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/riskFactorText"
+                    android:layout_below="@id/riskFactorText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/labor_burden"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/laborBurden"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/laborBurdenText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/equipmentCostText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/laborBurdenText"
+                    android:layout_below="@id/laborBurdenText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/equipment_cost"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/equipmentCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/equipmentCostText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/adminMaintText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/equipmentCostText"
+                    android:layout_below="@id/equipmentCostText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/admin_maint"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/adminMaint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/adminMaintText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/adminMaintText"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/manRateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/adminMaintText"
+                    android:layout_below="@id/adminMaintText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/man_rate"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/manRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/manRateText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/materialCostText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/manRateText"
+                    android:layout_below="@id/manRateText"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/material_cost"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/materialCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/materialCostText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/materialCostText"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/breakEvenText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/materialCostText"
+                    android:layout_below="@id/materialCostText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/break_even"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/breakEven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/breakEvenText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <TextView
+                    android:id="@+id/profitPercentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/breakEvenText"
+                    android:layout_below="@id/breakEvenText"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/profit_percent"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/profitPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/profitPercentText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/profitPercentText"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/estimatePriceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/profitPercentText"
+                    android:layout_below="@id/profitPercentText"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/estimate_price"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/estimatePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/estimatePriceText"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp"
+                    android:text="@string/value_placeholder" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/doneButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bidLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/colorButton"
+                android:text="@string/done"
+                android:textColor="@color/colorActionBar"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

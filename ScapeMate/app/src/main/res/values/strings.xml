@@ -1,3 +1,81 @@
 <resources>
     <string name="app_name">ScapeMate</string>
+    <string name="employees_button">Add Employees</string>
+    <string name="equipment_button">Add Equipment</string>
+    <string name="company_name">Company Name</string>
+    <string name="truck_button">Add Truck/Trailer</string>
+    <string name="hourly_admin">Hourly Cost of Admin</string>
+    <string name="save_button">Save</string>
+    <string name="new_employee">New Employee</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="hourly_wage">Hourly Wage</string>
+    <string name="average_hours">Average Weekly Hours</string>
+    <string name="menu_button">Menu</string>
+    <string name="logo">Logo</string>
+    <string name="background_image">Background</string>
+    <string name="new_equipment">New Equipment</string>
+    <string name="equipment_name">Equipment Name</string>
+    <string name="weekly_hours">Weekly Usage Hours</string>
+    <string name="weekly_usage_cost">Weekly Usage Cost</string>
+    <string name="weekly_maint_cost">Weekly Maintenance Cost</string>
+    <string name="search_hint">Bid# or Customer Name</string>
+    <string name="new_bid">New Bid</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_number">Phone Number</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="bid_num">Bid#</string>
+    <string name="date">XX/XX/XXXX</string>
+    <string name="hours">Hours</string>
+    <string name="employees">Employees</string>
+    <string name="equipment">Equipment</string>
+    <string name="add_materials">Add Materials</string>
+    <string name="profit_percent">Profit %</string>
+    <string name="estimate">Estimate</string>
+    <string name="crew_wage">Crew Average Wage:</string>
+    <string name="overtime_factor">Overtime Factor:</string>
+    <string name="risk_factor">Risk Factor:</string>
+    <string name="labor_burden">Labor Burden:</string>
+    <string name="equipment_cost">Equipment Cost:</string>
+    <string name="admin_maint">Admin/Maint:</string>
+    <string name="man_rate">Man Rate          =</string>
+    <string name="material_cost">Material Cost:</string>
+    <string name="break_even">Break Even        =</string>
+    <string name="estimate_price">Estimate Price    =</string>
+    <string name="done">Done</string>
+    <string name="value_placeholder">$0.00</string>
+    <string name="job_type">Job Type</string>
+    <string name="bid_status">Bid Status</string>
+    <string name="selected_bid">Selected Bid</string>
+    <string name="schedule">Schedule</string>
+    <string name="bid_list">Bid List</string>
+    <string name="materials_calculator">Materials Calculator</string>
+    <string name="width">Width feet</string>
+    <string name="length">Length feet</string>
+    <string name="depth">Depth inches</string>
+    <string name="materials">Materials</string>
+    <string name="cost_materials">Cost of Materials cu/yd</string>
+    <string name="total_cost">Total Cost: $0.00</string>
+    <string-array name="equipmentSpinnerItems">
+        <item>Own</item>
+        <item>Rent</item>
+    </string-array>
+    <string-array name="jobSpinnerItems">
+        <item>Maintenance</item>
+        <item>Mulch</item>
+        <item>Leaf Removal</item>
+        <item>Seeding</item>
+        <item>Aeration</item>
+        <item>Snow Removal</item>
+        <item>Design</item>
+    </string-array>
+    <string-array name="bidStatusSpinnerItems">
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Denied</item>
+    </string-array>
+    <string name="new_truck">New Truck/Trailer</string>
+    <string name="truck_name">Truck/Trailer Name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

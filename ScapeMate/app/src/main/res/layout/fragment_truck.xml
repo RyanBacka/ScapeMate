@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scapemate.fullsail.backaryan.scapemate.fragments.TruckFragment">
+
+
+    <TextView
+        android:id="@+id/newTruck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorButton"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="@string/new_truck" />
+
+    <EditText
+        android:id="@+id/truckNameET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_below="@id/newTruck"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorActionBar"
+        android:ems="12"
+        android:hint="@string/truck_name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/truckHoursET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignEnd="@+id/truckNameET"
+        android:layout_below="@+id/truckNameET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:ems="12"
+        android:hint="@string/weekly_hours"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/truckCostET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignEnd="@+id/truckHoursET"
+        android:layout_below="@+id/truckHoursET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:ems="12"
+        android:hint="@string/weekly_usage_cost"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/truckMaintET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/truckCostET"
+        android:layout_below="@+id/truckCostET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:ems="12"
+        android:hint="@string/weekly_maint_cost"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/truckSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/truckMaintET"
+        android:background="@color/colorButton"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorActionBar"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_marginTop="70dp"
+        android:text="@string/save_button" />
+
+</RelativeLayout>

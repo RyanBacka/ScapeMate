@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.scapemate.fullsail.backaryan.scapemate.activities.MainActivity">
+    tools:context="com.scapemate.fullsail.backaryan.scapemate.activities.BidListActivity">
 
     <include
         layout="@layout/custom_toolbar"
@@ -15,7 +14,7 @@
 
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/listContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/custom_toolbar">
@@ -27,4 +26,5 @@
             android:scaleType="centerCrop"
             android:src="@drawable/background" />
     </FrameLayout>
+
 </RelativeLayout>

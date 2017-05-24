@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "5282768065",
+    "firebase_url": "https://scapemate.firebaseio.com",
+    "project_id": "scapemate",
+    "storage_bucket": "scapemate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5282768065:android:a0f49fa0b792f833",
+        "android_client_info": {
+          "package_name": "com.scapemate.fullsail.backaryan.scapemate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5282768065-c78hne2m2f1dslebuva45djhf5b6nlrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCthqzfTSMC77z5c6LA_gf0z-SYxReSz8I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

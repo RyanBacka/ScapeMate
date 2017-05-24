@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scapemate.fullsail.backaryan.scapemate.fragments.EquipmentFragment">
+
+    <TextView
+        android:id="@+id/newEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/new_equipment"
+        android:textColor="@color/colorButton"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/equipmentNameET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_below="@id/newEquipment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorActionBar"
+        android:ems="10"
+        android:hint="@string/equipment_name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/equipmentHoursET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignEnd="@+id/equipmentNameET"
+        android:layout_below="@+id/equipmentNameET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:ems="10"
+        android:hint="@string/weekly_hours"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/equipmentUsageET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignEnd="@+id/equipmentHoursET"
+        android:layout_below="@+id/equipmentHoursET"
+        android:background="@color/colorActionBar"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/weekly_usage_cost"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/equipmentMaintET"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/equipmentUsageET"
+        android:layout_below="@+id/equipmentUsageET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:ems="10"
+        android:hint="@string/weekly_maint_cost"
+        android:inputType="numberDecimal" />
+
+    <Spinner
+        android:id="@+id/equipmentSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/equipmentMaintET"
+        android:layout_below="@+id/equipmentMaintET"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorActionBar"
+        android:entries="@array/equipmentSpinnerItems" />
+
+    <Button
+        android:id="@+id/equipmentSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/equipmentSpinner"
+        android:background="@color/colorButton"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorActionBar"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_marginTop="70dp"
+        android:text="@string/save_button" />
+
+</RelativeLayout>
