@@ -72,6 +72,11 @@ public class BidListActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
+        if(bidListFragment.isVisible()){
+
+        } else {
+            super.onBackPressed();
+        }
 
     }
 }

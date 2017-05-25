@@ -58,9 +58,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addToBackStack(null)
                 .commit();
     }
-
-    @Override
-    public void onBackPressed() {
-
-    }
 }

@@ -43,6 +43,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
         view.findViewById(R.id.newEquipmentButton).setOnClickListener(this);
         view.findViewById(R.id.newTruckButton).setOnClickListener(this);
         view.findViewById(R.id.bidListButton).setOnClickListener(this);
+        view.findViewById(R.id.newCompanyButton).setOnClickListener(this);
         getActivity().findViewById(R.id.menu).setVisibility(View.INVISIBLE);
         return view;
     }
@@ -75,9 +76,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
             intent.putExtra("SCREEN",3);
             getActivity().finish();
             startActivity(intent);
-        }else{
+        }else if(v.getId() == R.id.bidListButton){
             Intent intent = new Intent(getActivity().getApplicationContext(), BidListActivity.class);
             getActivity().finish();
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
     }

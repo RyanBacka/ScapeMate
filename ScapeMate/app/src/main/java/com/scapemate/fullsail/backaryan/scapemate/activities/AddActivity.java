@@ -88,11 +88,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         SharedPreferences.Editor outState = getSharedPreferences("form", Context.MODE_APPEND).edit();
