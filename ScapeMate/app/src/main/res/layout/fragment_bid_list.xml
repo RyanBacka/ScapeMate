@@ -27,4 +27,18 @@
         android:dividerHeight="5dp"
         android:layout_below="@id/bidSearch"
         android:visibility="visible" />
+
+    <Button
+        android:id="@+id/bidButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorButton"
+        android:text="@string/new_bid"
+        android:textColor="@color/colorActionBar"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 </RelativeLayout>

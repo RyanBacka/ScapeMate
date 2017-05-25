@@ -23,8 +23,10 @@ import com.scapemate.fullsail.backaryan.scapemate.R;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Bid;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class SelectedBidFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
@@ -97,14 +99,13 @@ public class SelectedBidFragment extends Fragment implements View.OnClickListene
                     .commit();
 
         } else if(v.getId()==R.id.scheduleButton){
-            Calendar beginTime = Calendar.getInstance();
-            beginTime.set(2012, 0, 19, 7, 30);
-            Calendar endTime = Calendar.getInstance();
-            endTime.set(2012, 0, 19, 8, 30);
+            Calendar calendar = Calendar.getInstance();
+
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
-                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
-                    .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
+                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calendar.getTimeInMillis());
+                    calendar.add(Calendar.HOUR,+1);
+                    intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calendar.getTimeInMillis())
                     .putExtra(CalendarContract.Events.TITLE, bid.getCustomerName())
                     .putExtra(CalendarContract.Events.DESCRIPTION, bid.getJobType())
                     .putExtra(CalendarContract.Events.EVENT_LOCATION, bid.getCustomerAddress())

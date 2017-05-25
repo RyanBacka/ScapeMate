@@ -23,7 +23,7 @@ import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 
 import java.util.ArrayList;
 
-public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener{
+public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener{
 
 
     private static final String TAG = "BidListFrag";
@@ -59,6 +59,15 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
         SearchView searchView = ((SearchView)view.findViewById(R.id.bidSearch));
         searchView.setOnQueryTextListener(this);
         searchView.setOnCloseListener(this);
+        DataHelper dataHelper = new DataHelper();
+        Company company = dataHelper.readCompany(getActivity());
+        ArrayList<Bid> bids = company.getBids();
+        if(bids.size()==0){
+            view.findViewById(R.id.bidButton).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.bidButton).setOnClickListener(this);
+        } else {
+            view.findViewById(R.id.bidButton).setVisibility(View.INVISIBLE);
+        }
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("bidForm", Context.MODE_APPEND);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.clear();
@@ -135,5 +144,14 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
         setListAdapter(null);
         setListAdapter(adapter);
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        NewBIdFragment newBIdFragment = NewBIdFragment.newInstance();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.listContainer, newBIdFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
