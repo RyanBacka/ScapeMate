@@ -62,7 +62,6 @@ public class SelectedBidFragment extends Fragment implements View.OnClickListene
         ArrayList<Bid> bids = company.getBids();
         int selected = getArguments().getInt("selected");
         bid = bids.get(selected);
-        (getActivity().findViewById(R.id.menu)).setOnClickListener(this);
         ((TextView)view.findViewById(R.id.selectedCustomerName)).setText(bid.getCustomerName());
         ((TextView)view.findViewById(R.id.selectedCustomerAddress)).setText(bid.getCustomerAddress());
         ((TextView)view.findViewById(R.id.selectedCustomerPhone)).setText(bid.getCustomerPhoneNum());
@@ -111,14 +110,7 @@ public class SelectedBidFragment extends Fragment implements View.OnClickListene
                     .putExtra(CalendarContract.Events.EVENT_LOCATION, bid.getCustomerAddress())
                     .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
             startActivity(intent);
-        } else {
-            MenuFragment menuFragment = MenuFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.listContainer,menuFragment)
-                    .addToBackStack(null)
-                    .commit();
         }
-
     }
 
     @Override

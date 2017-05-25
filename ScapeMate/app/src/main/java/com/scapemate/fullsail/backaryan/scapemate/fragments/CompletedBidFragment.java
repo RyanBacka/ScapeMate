@@ -30,7 +30,7 @@ public class CompletedBidFragment extends Fragment implements View.OnClickListen
         // Required empty public constructor
     }
 
-    public static CompletedBidFragment newInstance(){
+    public static CompletedBidFragment newInstance() {
         return new CompletedBidFragment();
     }
 
@@ -48,39 +48,30 @@ public class CompletedBidFragment extends Fragment implements View.OnClickListen
         DataHelper dataHelper = new DataHelper();
         Company company = dataHelper.readCompany(getActivity());
         ArrayList<Bid> bids = company.getBids();
-        Bid bid = bids.get(bids.size()-1);
+        Bid bid = bids.get(bids.size() - 1);
         BidHelper bidHelper = new BidHelper();
-        ((TextView)view.findViewById(R.id.crewWage)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getCrewAverageWage(bid)));
-        ((TextView)view.findViewById(R.id.overtimeFactor)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getOvertimeFactor(bid)));
-        ((TextView)view.findViewById(R.id.riskFactor)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getRiskFactor(bid)));
-        ((TextView)view.findViewById(R.id.laborBurden)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getLaborBurden(bid)));
-        ((TextView)view.findViewById(R.id.equipmentCost)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getEquipCost(company,bid)));
-        ((TextView)view.findViewById(R.id.adminMaint)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getMaintCost(company,bid)));
-        ((TextView)view.findViewById(R.id.manRate)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getManRate(company,bid)));
-        ((TextView)view.findViewById(R.id.materialCost)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getMaterialCost(bid)));
-        ((TextView)view.findViewById(R.id.breakEven)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getBreakEven(company,bid)));
-        ((TextView)view.findViewById(R.id.profitPercent)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getProfit(company,bid)));
-        ((TextView)view.findViewById(R.id.estimatePrice)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getEstimatePrice(company,bid)));
+        ((TextView) view.findViewById(R.id.crewWage)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getCrewAverageWage(bid)));
+        ((TextView) view.findViewById(R.id.overtimeFactor)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getOvertimeFactor(bid)));
+        ((TextView) view.findViewById(R.id.riskFactor)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getRiskFactor(bid)));
+        ((TextView) view.findViewById(R.id.laborBurden)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getLaborBurden(bid)));
+        ((TextView) view.findViewById(R.id.equipmentCost)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getEquipCost(company, bid)));
+        ((TextView) view.findViewById(R.id.adminMaint)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getMaintCost(company, bid)));
+        ((TextView) view.findViewById(R.id.manRate)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getManRate(company, bid)));
+        ((TextView) view.findViewById(R.id.materialCost)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getMaterialCost(bid)));
+        ((TextView) view.findViewById(R.id.breakEven)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getBreakEven(company, bid)));
+        ((TextView) view.findViewById(R.id.profitPercent)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getProfit(company, bid)));
+        ((TextView) view.findViewById(R.id.estimatePrice)).setText(String.format(Locale.ENGLISH, "%.2f", bidHelper.getEstimatePrice(company, bid)));
         (view.findViewById(R.id.doneButton)).setOnClickListener(this);
-        (getActivity().findViewById(R.id.menu)).setOnClickListener(this);
-        dataHelper.saveCompany(company,getActivity());
+        dataHelper.saveCompany(company, getActivity());
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.menu){
-            MenuFragment menuFragment = MenuFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.listContainer,menuFragment)
-                    .addToBackStack(null)
-                    .commit();
-        } else {
-            BidListFragment bidListFragment = BidListFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.listContainer, bidListFragment)
-                    .commit();
-        }
+        BidListFragment bidListFragment = BidListFragment.newInstance();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.listContainer, bidListFragment)
+                .commit();
     }
 
     @Override

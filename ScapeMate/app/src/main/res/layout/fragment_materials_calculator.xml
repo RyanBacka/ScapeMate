@@ -1,105 +1,110 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.scapemate.fullsail.backaryan.scapemate.fragments.MaterialsCalculatorFragment">
 
-    <TextView
-        android:id="@+id/materialsCalc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/materials_calculator"
-        android:textColor="@color/colorButton"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/widthET"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_below="@id/materialsCalc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:background="@color/colorActionBar"
-        android:ems="12"
-        android:hint="@string/width"
-        android:inputType="numberDecimal" />
+            <TextView
+                android:id="@+id/materialsCalc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/materials_calculator"
+                android:textColor="@color/colorButton"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/lengthET"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_below="@id/widthET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@color/colorActionBar"
-        android:ems="12"
-        android:hint="@string/length"
-        android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/widthET"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@id/materialsCalc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:background="@color/colorActionBar"
+                android:ems="12"
+                android:hint="@string/width"
+                android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/depthET"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_below="@id/lengthET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@color/colorActionBar"
-        android:ems="12"
-        android:hint="@string/depth"
-        android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/lengthET"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@id/widthET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorActionBar"
+                android:ems="12"
+                android:hint="@string/length"
+                android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/materialsET"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_below="@id/depthET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@color/colorActionBar"
-        android:ems="12"
-        android:hint="@string/materials"
-        android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/depthET"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@id/lengthET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorActionBar"
+                android:ems="12"
+                android:hint="@string/depth"
+                android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/costOfMaterialsET"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_below="@id/materialsET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@color/colorActionBar"
-        android:ems="12"
-        android:hint="@string/cost_materials"
-        android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/materialsET"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@id/depthET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorActionBar"
+                android:ems="12"
+                android:hint="@string/materials"
+                android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/totalCostTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/costOfMaterialsET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/total_cost"
-        android:textColor="@color/colorButton"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/costOfMaterialsET"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@id/materialsET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorActionBar"
+                android:ems="12"
+                android:hint="@string/cost_materials"
+                android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/materialsSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/totalCostTV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:background="@color/colorButton"
-        android:text="@string/save_button"
-        android:textColor="@color/colorActionBar"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/totalCostTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/costOfMaterialsET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="@string/total_cost"
+                android:textColor="@color/colorButton"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/materialsSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/totalCostTV"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:background="@color/colorButton"
+                android:text="@string/save_button"
+                android:textColor="@color/colorActionBar"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
-</RelativeLayout>
+        </RelativeLayout>
+
+</ScrollView>

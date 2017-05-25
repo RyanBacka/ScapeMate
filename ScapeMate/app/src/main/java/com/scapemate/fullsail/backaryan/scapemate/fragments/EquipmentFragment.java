@@ -1,6 +1,7 @@
 package com.scapemate.fullsail.backaryan.scapemate.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.scapemate.fullsail.backaryan.scapemate.DataHelper;
 import com.scapemate.fullsail.backaryan.scapemate.R;
+import com.scapemate.fullsail.backaryan.scapemate.activities.BidListActivity;
+import com.scapemate.fullsail.backaryan.scapemate.activities.MainActivity;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Employee;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Equipment;
@@ -48,7 +51,6 @@ public class EquipmentFragment extends Fragment implements View.OnClickListener,
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
         view.findViewById(R.id.equipmentSave).setOnClickListener(this);
-        getActivity().findViewById(R.id.menu).setOnClickListener(this);
         Spinner spinner = (Spinner) view.findViewById(R.id.equipmentSpinner);
         spinner.setOnItemSelectedListener(this);
         return view;
@@ -56,26 +58,30 @@ public class EquipmentFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.menu) {
-            MenuFragment menuFragment = MenuFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, menuFragment)
-                    .addToBackStack(null)
-                    .commit();
-        } else {
-            final Equipment equipment = getEquipment();
-            if (equipment != null) {
-                Company company = dataHelper.readCompany(getActivity());
-                if (company.getEquipment() == null) {
-                    ArrayList<Equipment> equipmentArray = readEquipment(equipment);
-                    dataHelper.saveEquipment(equipmentArray, getActivity());
-                }else{
-                    ArrayList<Equipment> equipmentArray = company.getEquipment();
-                    equipmentArray.add(equipment);
-                    company.setEquipment(equipmentArray);
-                    dataHelper.saveCompany(company,getActivity());
-                }
+        final Equipment equipment = getEquipment();
+        if (equipment != null) {
+            Company company = dataHelper.readCompany(getActivity());
+            if (company.getEquipment() == null) {
+                ArrayList<Equipment> equipmentArray = readEquipment(equipment);
+                dataHelper.saveEquipment(equipmentArray, getActivity());
+            } else {
+                ArrayList<Equipment> equipmentArray = company.getEquipment();
+                equipmentArray.add(equipment);
+                company.setEquipment(equipmentArray);
+                dataHelper.saveCompany(company, getActivity());
+            }
 
+            DataHelper dataHelper = new DataHelper();
+            boolean companyCreated = dataHelper.companyCreatedRead(getActivity());
+
+            if (!companyCreated) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().finish();
+            } else {
+                Intent intent = new Intent(getActivity().getApplicationContext(), BidListActivity.class);
+                intent.putExtra("SCREEN",1);
+                getActivity().startActivity(intent);
                 getActivity().finish();
             }
         }
@@ -89,11 +95,11 @@ public class EquipmentFragment extends Fragment implements View.OnClickListener,
             if (company.getEquipment() == null) {
                 ArrayList<Equipment> equipmentArray = readEquipment(equipment);
                 dataHelper.saveEquipment(equipmentArray, getActivity());
-            }else{
+            } else {
                 ArrayList<Equipment> equipmentArray = company.getEquipment();
                 equipmentArray.add(equipment);
                 company.setEquipment(equipmentArray);
-                dataHelper.saveCompany(company,getActivity());
+                dataHelper.saveCompany(company, getActivity());
             }
 
             ((EditText) getActivity().findViewById(R.id.equipmentNameET)).getText().clear();

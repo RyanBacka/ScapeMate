@@ -1,6 +1,7 @@
 package com.scapemate.fullsail.backaryan.scapemate.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.scapemate.fullsail.backaryan.scapemate.DataHelper;
 import com.scapemate.fullsail.backaryan.scapemate.R;
+import com.scapemate.fullsail.backaryan.scapemate.activities.BidListActivity;
+import com.scapemate.fullsail.backaryan.scapemate.activities.MainActivity;
 import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 import com.scapemate.fullsail.backaryan.scapemate.objects.TruckTrailer;
 
@@ -36,7 +39,7 @@ public class TruckFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -45,7 +48,6 @@ public class TruckFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_truck, container, false);
         view.findViewById(R.id.truckSave).setOnClickListener(this);
-        getActivity().findViewById(R.id.menu).setOnClickListener(this);
         return view;
     }
 
@@ -74,27 +76,30 @@ public class TruckFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.menu) {
-            MenuFragment menuFragment = MenuFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, menuFragment)
-                    .addToBackStack(null)
-                    .commit();
-        } else {
-            final TruckTrailer truckTrailer = getTruckTrailer();
-            if (truckTrailer != null) {
-                Company company = dataHelper.readCompany(getActivity());
-                if (company.getTrucksTrailers() == null) {
-                    ArrayList<TruckTrailer> truckTrailers = readTruck(truckTrailer);
-                    dataHelper.saveTruck(truckTrailers, getActivity());
-                } else {
-                    ArrayList<TruckTrailer> truckTrailers = company.getTrucksTrailers();
-                    truckTrailers.add(truckTrailer);
-                    company.setTrucksTrailers(truckTrailers);
-                    dataHelper.saveCompany(company, getActivity());
-                }
+        final TruckTrailer truckTrailer = getTruckTrailer();
+        if (truckTrailer != null) {
+            Company company = dataHelper.readCompany(getActivity());
+            if (company.getTrucksTrailers() == null) {
+                ArrayList<TruckTrailer> truckTrailers = readTruck(truckTrailer);
+                dataHelper.saveTruck(truckTrailers, getActivity());
+            } else {
+                ArrayList<TruckTrailer> truckTrailers = company.getTrucksTrailers();
+                truckTrailers.add(truckTrailer);
+                company.setTrucksTrailers(truckTrailers);
+                dataHelper.saveCompany(company, getActivity());
             }
+        }
+        DataHelper dataHelper = new DataHelper();
+        boolean companyCreated = dataHelper.companyCreatedRead(getActivity());
 
+        if (!companyCreated) {
+            Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+            getActivity().startActivity(intent);
+            getActivity().finish();
+        } else {
+            Intent intent = new Intent(getActivity().getApplicationContext(),BidListActivity.class);
+            intent.putExtra("SCREEN",1);
+            getActivity().startActivity(intent);
             getActivity().finish();
         }
     }

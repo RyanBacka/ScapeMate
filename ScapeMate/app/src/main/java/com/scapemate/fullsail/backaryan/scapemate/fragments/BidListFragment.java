@@ -1,10 +1,13 @@
 package com.scapemate.fullsail.backaryan.scapemate.fragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +23,12 @@ import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 
 import java.util.ArrayList;
 
-public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, View.OnClickListener{
+public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener{
 
 
     private static final String TAG = "BidListFrag";
-    ArrayList<Bid> bids;
+    BidAdapter adapter;
+    View view;
 
     public BidListFragment() {
         // Required empty public constructor
@@ -34,33 +38,32 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
         return new BidListFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        DataHelper dataHelper = new DataHelper();
+        Company company = dataHelper.readCompany(getActivity());
+        ArrayList<Bid> bids = company.getBids();
+        Log.d(TAG,bids.size()+"");
+        adapter = new BidAdapter(getContext(),bids);
+        setListAdapter(adapter);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bid_list, container, false);
-        ((SearchView)view.findViewById(R.id.bidSearch)).setOnQueryTextListener(this);
-        (getActivity().findViewById(R.id.menu)).setOnClickListener(this);
+        view = inflater.inflate(R.layout.fragment_bid_list, container, false);
+        SearchView searchView = ((SearchView)view.findViewById(R.id.bidSearch));
+        searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(this);
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("bidForm", Context.MODE_APPEND);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.clear();
+        editor.commit();
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        DataHelper dataHelper = new DataHelper();
-        Company company = dataHelper.readCompany(getActivity());
-        bids = company.getBids();
-        BidAdapter adapter = new BidAdapter(getContext(),bids);
-        if(bids!=null){
-            setListAdapter(adapter);
-        }
     }
 
     @Override
@@ -86,21 +89,36 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
     @Override
     public boolean onQueryTextSubmit(String query) {
         ArrayList<Bid> searchBids = doSearch(query);
-        BidAdapter bidAdapter = new BidAdapter(getContext(),searchBids);
-        setListAdapter(bidAdapter);
+        if(searchBids.size()>0) {
+            BidAdapter searchAdapter = new BidAdapter(getContext(), searchBids);
+            setListAdapter(null);
+            setListAdapter(searchAdapter);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        ArrayList<Bid> searchBids = doSearch(newText);
-        BidAdapter bidAdapter = new BidAdapter(getContext(),searchBids);
-        setListAdapter(bidAdapter);
+        if(newText.equalsIgnoreCase("")){
+            setListAdapter(null);
+            setListAdapter(adapter);
+        } else {
+            ArrayList<Bid> searchBids = doSearch(newText);
+            BidAdapter searchAdapter = new BidAdapter(getContext(), searchBids);
+            setListAdapter(null);
+            setListAdapter(searchAdapter);
+        }
         return false;
     }
 
+
+
     public ArrayList<Bid> doSearch(String query){
         ArrayList<Bid> searchBids = new ArrayList<>();
+        DataHelper dataHelper = new DataHelper();
+        Company company = dataHelper.readCompany(getActivity());
+        ArrayList<Bid> bids = company.getBids();
         for(Bid bid:bids){
             if(bid.getCustomerName().contains(query)){
                 searchBids.add(bid);
@@ -113,11 +131,9 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
     }
 
     @Override
-    public void onClick(View v) {
-        MenuFragment menuFragment = MenuFragment.newInstance();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.listContainer,menuFragment)
-                .addToBackStack(null)
-                .commit();
+    public boolean onClose() {
+        setListAdapter(null);
+        setListAdapter(adapter);
+        return false;
     }
 }

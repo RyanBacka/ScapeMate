@@ -1,8 +1,11 @@
 package com.scapemate.fullsail.backaryan.scapemate.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,33 +28,49 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "MainFragment";
+    private static final String COMPANY_NAME = "com.scapemate.fullsail.backaryan.scapemate.COMPANY_NAME";
+    private static final String MAINT_COST = "com.scapemate.fullsail.backaryan.scapemate.MAINT_COST";
+    private static final String SAVED = "com.scapemate.fullsail.backaryan.scapemate.SAVED";
     DataHelper dataHelper = new DataHelper();
+    View rootView;
 
     public MainFragment() {
         // Required empty public constructor
     }
 
     public static MainFragment newInstance() {
-        return new MainFragment();
+        MainFragment mainFragment = new MainFragment();
+        mainFragment.setArguments(new Bundle());
+        return mainFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        (view.findViewById(R.id.addEmployeesButton)).setOnClickListener(this);
-        (view.findViewById(R.id.addEquipmentButton)).setOnClickListener(this);
-        (view.findViewById(R.id.addTruckButton)).setOnClickListener(this);
-        (view.findViewById(R.id.companySave)).setOnClickListener(this);
-        (getActivity().findViewById(R.id.menu)).setOnClickListener(this);
-        return view;
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        (rootView.findViewById(R.id.addEmployeesButton)).setOnClickListener(this);
+        (rootView.findViewById(R.id.addEquipmentButton)).setOnClickListener(this);
+        (rootView.findViewById(R.id.addTruckButton)).setOnClickListener(this);
+        (rootView.findViewById(R.id.companySave)).setOnClickListener(this);
+
+        SharedPreferences formData = getActivity().getSharedPreferences("form", Context.MODE_APPEND);
+        if(formData.getBoolean(SAVED,false)) {
+            String companyName = formData.getString(COMPANY_NAME,"");
+            String hourlyMaint = formData.getString(MAINT_COST,"");
+            if(!companyName.equalsIgnoreCase("")) {
+                ((EditText) rootView.findViewById(R.id.companyNameET)).setText(companyName);
+            }
+            if(!hourlyMaint.equalsIgnoreCase("")) {
+                ((EditText) rootView.findViewById(R.id.hourlyMaintET)).setText(hourlyMaint);
+            }
+        }
+        return rootView;
     }
 
     @Override
     public void onClick(View v) {
         int whichScreen = 0;
-        Log.d(TAG, v.getId() + "");
         if (v.getId() == R.id.addEmployeesButton) {
             whichScreen = 1;
             Intent intent = new Intent(getActivity().getApplicationContext(), AddActivity.class);
@@ -90,17 +109,32 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                         dataHelper.saveCompany(company, getActivity());
                         dataHelper.companyCreated(true, getActivity());
                     }
+                    ((EditText)getActivity().findViewById(R.id.companyNameET)).getText().clear();
+                    ((EditText)getActivity().findViewById(R.id.hourlyMaintET)).getText().clear();
                     Intent intent = new Intent(getActivity().getApplicationContext(), BidListActivity.class);
                     startActivity(intent);
                 }
             }
-        } else {
-            MenuFragment menuFragment = MenuFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container,menuFragment)
-                    .addToBackStack(null)
-                    .commit();
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences.Editor outState = getActivity().getSharedPreferences("form", Context.MODE_APPEND).edit();
+        String companyName = ((EditText)rootView.findViewById(R.id.companyNameET)).getText().toString();
+        String maintCost = ((EditText)rootView.findViewById(R.id.hourlyMaintET)).getText().toString();
+        outState.putBoolean(SAVED, true);
+        outState.putString(COMPANY_NAME, companyName);
+        outState.putString(MAINT_COST,maintCost);
+        outState.apply();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor outState = getActivity().getSharedPreferences("form", Context.MODE_APPEND).edit();
+        outState.remove("form").commit();
     }
 }
 
