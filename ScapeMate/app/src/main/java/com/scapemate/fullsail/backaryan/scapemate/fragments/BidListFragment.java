@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.scapemate.fullsail.backaryan.scapemate.BidAdapter;
 import com.scapemate.fullsail.backaryan.scapemate.DataHelper;
@@ -23,7 +24,7 @@ import com.scapemate.fullsail.backaryan.scapemate.objects.Company;
 
 import java.util.ArrayList;
 
-public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener{
+public class BidListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener{
 
 
     private static final String TAG = "BidListFrag";
@@ -62,11 +63,13 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
         DataHelper dataHelper = new DataHelper();
         Company company = dataHelper.readCompany(getActivity());
         ArrayList<Bid> bids = company.getBids();
+        ((TextView)view.findViewById(R.id.companyNameTV)).setText(company.getCompanyName());
         if(bids.size()==0){
-            view.findViewById(R.id.bidButton).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.bidButton).setOnClickListener(this);
+            view.findViewById(R.id.exp_view).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.addBidTV).setVisibility(View.VISIBLE);
         } else {
-            view.findViewById(R.id.bidButton).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.exp_view).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.addBidTV).setVisibility(View.INVISIBLE);
         }
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("bidForm", Context.MODE_APPEND);
         SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -144,14 +147,5 @@ public class BidListFragment extends ListFragment implements SearchView.OnQueryT
         setListAdapter(null);
         setListAdapter(adapter);
         return false;
-    }
-
-    @Override
-    public void onClick(View v) {
-        NewBIdFragment newBIdFragment = NewBIdFragment.newInstance();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.listContainer, newBIdFragment)
-                .addToBackStack(null)
-                .commit();
     }
 }

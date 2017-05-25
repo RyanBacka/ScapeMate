@@ -100,11 +100,12 @@ public class SelectedBidFragment extends Fragment implements View.OnClickListene
 
         } else if(v.getId()==R.id.scheduleButton){
             Calendar calendar = Calendar.getInstance();
+            double jobLength = bid.getJobHours();
 
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calendar.getTimeInMillis());
-                    calendar.add(Calendar.HOUR,+1);
+                    calendar.add(Calendar.HOUR,+(int)jobLength);
                     intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calendar.getTimeInMillis())
                     .putExtra(CalendarContract.Events.TITLE, bid.getCustomerName())
                     .putExtra(CalendarContract.Events.DESCRIPTION, bid.getJobType())

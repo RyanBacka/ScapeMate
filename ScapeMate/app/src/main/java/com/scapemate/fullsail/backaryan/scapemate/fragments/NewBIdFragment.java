@@ -29,6 +29,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 public class NewBIdFragment extends Fragment implements View.OnClickListener {
 
@@ -155,21 +156,64 @@ public class NewBIdFragment extends Fragment implements View.OnClickListener {
             switch (jobType) {
                 case "Maintenance":
                     position = 0;
+                    break;
                 case "Mulch":
                     position = 1;
+                    break;
                 case "Leaf Removal":
                     position = 2;
+                    break;
                 case "Seeding":
                     position = 3;
+                    break;
                 case "Aeration":
                     position = 4;
+                    break;
                 case "Snow Removal":
                     position = 5;
+                    break;
                 case "Design":
                     position = 6;
+                    break;
+            }
+            ((Spinner) rootView.findViewById(R.id.jobSpinner)).setSelection(position);
+
+            String selectedCheck = bidData.getString("selectedString", "");
+            int selectedSize = bidData.getInt("selected",0);
+            int employeesSize = bidData.getInt("employees",0);
+            int equipmentSize = bidData.getInt("equipment",0);
+            int trucksSize = bidData.getInt("trucks",0);
+            StringTokenizer st = new StringTokenizer(selectedCheck, ",");
+            ArrayList<Integer> savedList = new ArrayList<>();
+            for (int i = 0; i < selectedSize; i++) {
+                savedList.add(Integer.parseInt(st.nextToken()));
             }
 
-            ((Spinner) rootView.findViewById(R.id.jobSpinner)).setSelection(position);
+            if(employeesSize==employees.size() && equipmentSize==equipment.size() && trucksSize==truckTrailers.size()){
+                for(Integer i:savedList){
+                    CheckBox checkBox = (CheckBox) rootView.findViewById(i);
+                    checkBox.setChecked(true);
+                }
+            } else if(employeesSize<employees.size() || equipmentSize<equipment.size()){
+                int empAdder = employees.size()-employeesSize;
+                for(Integer i:savedList){
+                    int topParam = employees.size()+equipmentSize;
+                    if(i>=employeesSize && i<topParam) {
+                        int viewId = i+empAdder;
+                        CheckBox checkBox = (CheckBox) rootView.findViewById(viewId);
+                        checkBox.setChecked(true);
+                    } else if(i>=employeesSize+equipmentSize){
+                        int truckID = (equipment.size()-equipmentSize)+empAdder+i;
+                        CheckBox checkBox = (CheckBox) rootView.findViewById(truckID);
+                        checkBox.setChecked(true);
+                    } else {
+                        CheckBox checkBox = (CheckBox) rootView.findViewById(i);
+                        checkBox.setChecked(true);
+                    }
+                }
+            }
+
+
         }
 
         return rootView;
@@ -267,6 +311,13 @@ public class NewBIdFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
+        ArrayList<Integer> selected = new ArrayList<>();
+        for (int i = 0; i < checkId; i++) {
+            CheckBox checkBox = (CheckBox) getActivity().findViewById(i);
+            if (checkBox.isChecked()) {
+                selected.add(i);
+            }
+        }
         SharedPreferences.Editor outState = getActivity().getSharedPreferences("bidForm", Context.MODE_APPEND).edit();
         outState.putBoolean(SAVED, true);
         String bidNum = ((EditText) getActivity().findViewById(R.id.bidNumET)).getText().toString();
@@ -277,6 +328,16 @@ public class NewBIdFragment extends Fragment implements View.OnClickListener {
         String jobType = ((Spinner) getActivity().findViewById(R.id.jobSpinner)).getSelectedItem().toString();
         String jobHours = ((EditText) getActivity().findViewById(R.id.hoursET)).getText().toString();
         String profitPercent = ((EditText) getActivity().findViewById(R.id.enteredProfitPercent)).getText().toString();
+
+        StringBuilder selectedString = new StringBuilder();
+        for (int i = 0; i < selected.size(); i++) {
+            selectedString.append(selected.get(i)).append(",");
+        }
+        outState.putInt("selected",selected.size());
+        outState.putInt("employees",employees.size());
+        outState.putInt("equipment",equipment.size());
+        outState.putInt("trucks",truckTrailers.size());
+        outState.putString("selectedString", selectedString.toString());
         outState.putString("bidNum", bidNum);
         outState.putString("bidDate", bidDate);
         outState.putString("customerName", customerName);
@@ -285,6 +346,7 @@ public class NewBIdFragment extends Fragment implements View.OnClickListener {
         outState.putString("jobType", jobType);
         outState.putString("jobHours", jobHours);
         outState.putString("profitPercent", profitPercent);
+
         outState.apply();
     }
 

@@ -11,34 +11,54 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/colorActionBar"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorActionBar"
         android:queryHint="@string/search_hint"
         android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/companyNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bidSearch"
+        android:layout_centerHorizontal="true"
+        android:text="@string/company_name"
+        android:textColor="@color/colorButton"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/android:list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/companyNameTV"
         android:divider="@android:color/transparent"
         android:dividerHeight="5dp"
-        android:layout_below="@id/bidSearch"
         android:visibility="visible" />
 
-    <Button
-        android:id="@+id/bidButton"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/exp_view"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@color/colorButton"
-        android:text="@string/new_bid"
-        android:textColor="@color/colorActionBar"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:background="@color/colorActionBar"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:id="@+id/addBidTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/add_bid_exp"
+            android:textColor="@color/colorButton"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 </RelativeLayout>
