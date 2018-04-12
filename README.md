@@ -6,6 +6,8 @@ ScapeMate
 
 https://github.com/RyanBacka/ScapeMate
 
+https://play.google.com/store/apps/details?id=com.scapemate.fullsail.backaryan.scapemate&hl=en
+
 Load signed apk to device.
 
 Create company, add employees, add equipment, add trucks/trailers, enter hourly cost of Admin and save.
